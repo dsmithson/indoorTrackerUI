@@ -1,0 +1,36 @@
+﻿<Window x:Class="IndoorLocationViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IndoorLocationViewer"
+        xmlns:viewModel="clr-namespace:IndoorLocationViewer.ViewModel"
+        mc:Ignorable="d"
+        x:Name="window"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding ElementName=window, Path=DetectedDevices}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Device MAC" Width="125" DisplayMemberBinding="{Binding Path=Mac}"/>
+                    <GridViewColumn Header="Vendor Name" Width="150" DisplayMemberBinding="{Binding Path=VendorName}"/>
+                    <GridViewColumn Header="Pillar 1 RSSI" Width="75" DisplayMemberBinding="{Binding Path=Pillar1Rssi}"/>
+                    <GridViewColumn Header="Pillar 2 RSSI" Width="75" DisplayMemberBinding="{Binding Path=Pillar2Rssi}"/>
+                    <GridViewColumn Header="Pillar 3 RSSI" Width="75" DisplayMemberBinding="{Binding Path=Pillar3Rssi}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StatusBar Grid.Row="1">
+            <TextBlock>
+                <TextBlock Text="{Binding ElementName=window, Path=DetectedDevices.Count}"/>
+                <Run> detected devices </Run>
+            </TextBlock>
+        </StatusBar>
+    </Grid>
+</Window>
